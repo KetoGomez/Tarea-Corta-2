@@ -1,0 +1,79 @@
+package tarea;
+
+import javax.swing.JOptionPane;
+
+public class Tarea {
+
+	public Tarea() {
+
+	}
+
+	/**
+	 * Este metodo funciona para calcular la conversion a binario de un numero
+	 * en base 10. Metodo estatico para compartir los resultados en la clase y
+	 * no tener que instanciar un objeto.
+	 * 
+	 * @param numero que se desea convertir a binario.
+	 * @return un String del numero en binario que se desea a convertir a base
+	 * 2.
+	 */
+	public static String numeroBinario(int numero) {
+		String numeroBinario = "";
+		if (numero <= 0) { // caso base, condicion de parada
+			numeroBinario += "";
+		} else {
+			numeroBinario = numeroBinario(numero / 2) + (numero % 2);
+		}
+		return numeroBinario;
+	}
+
+	/**
+	 * Este metodo recursivo funciona para calcular el factorial de un numero.
+	 * Metodo estatico para compartir los resultados en la clase y no tener que
+	 * instanciar un objeto.
+	 * 
+	 * @param numero al que se le desea calcular el factorial.
+	 * @return el factorial del numero.
+	 */
+	public static int factorial(int numero) {
+		int numeroFactorial = numero;
+		if (numero == 1) { // caso base, condicion de parada
+			return numeroFactorial;
+		} else {
+			numeroFactorial *= factorial(numero - 1);
+		}
+		return numeroFactorial;
+	}
+
+	public static void control(){
+		boolean bandera = true;
+		int opcion;
+		String mensaje = "Seleccione la opcion deseada(0 para salir). \n";
+		mensaje += "1. Representacion binaria. \n";
+		mensaje += "2. Permutacion factorial. \n";
+
+		while (bandera) {
+			opcion = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
+			switch (opcion) {
+			case 0: 
+				bandera= false;
+				break;
+			case 1:
+				int numero= Integer.parseInt(JOptionPane.showInputDialog("Digite un numero entero."));
+				String numeroBinario= Tarea.numeroBinario(numero);
+				JOptionPane.showMessageDialog(null, "El numero en binario es de la forma: " + numeroBinario);
+				break;
+			case 2: 
+				numero= Integer.parseInt(JOptionPane.showInputDialog("Digite un numero entero."));
+				JOptionPane.showMessageDialog(null, "La permutacion factorial del numero es de la forma: " + Tarea.factorial(numero));
+				break;
+			default:
+				JOptionPane.showMessageDialog(null, "Por favor digite una opcion valida.");
+				break;
+			}
+		}
+	}
+	public static void main(String[] args) {
+		Tarea.control();
+	}
+}
